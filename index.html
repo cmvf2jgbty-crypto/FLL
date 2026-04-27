@@ -243,7 +243,7 @@
 <div class="container">
     <header>
         <h1>🏺 FLL 2025-2026 场地赛积分表</h1>
-        <p class="subtitle">UNEARTHED (重见天日) - 黑白灰三色版</p>
+        <p class="subtitle">UNEARTHED (重见天日) - 最终版</p>
     </header>
 
     <div class="content">
@@ -318,7 +318,7 @@
                 <span>任务总分: <strong id="missionScore">0</strong></span>
                 <span>器材检录: <strong id="inspectScore">0</strong></span>
                 <span>精准奖励: <strong id="bonusScore">0</strong></span>
-                <span>理论满分: 525分</span>
+                <span>理论满分: 545分</span>
             </div>
             <div class="buttons">
                 <button class="action-btn" onclick="calculateScore()">🔄 计算总分</button>
@@ -330,12 +330,12 @@
 </div>
 
 <script>
-    // ⭐ 核心任务配置（任务14已修正为7个5分按钮）
+    // ⭐ 核心任务配置（最终修正版）
     const missions = [
         { 
             id: 1, 
             name: "清理表面", 
-            buttons: [10, 10], 
+            buttons: [10, 10, 10], // ✅ 修正：3个10分
             rules: "你需要特殊工具来清洁和挖掘埋在地下的文物，确保文物完好无损。用刷子清除沉积物，揭开远古文明的神秘面纱。<br>• 完全清除沉积物，并且沉积物接触场地地图。 每个 10分<br>• 考古学家的刷子未接触挖掘点。 10分"
         },
         { 
@@ -413,7 +413,7 @@
         { 
             id: 14, 
             name: "临时展区", 
-            buttons: [5, 5, 5, 5, 5, 5, 5],  // ✅ 7个5分按钮
+            buttons: [5, 5, 5, 5, 5, 5, 5], 
             rules: "将文物送往临时展区并进行展示。思考你从这些文物中了解了什么，还有哪些未解之谜。<br>文物接触场地地图并且至少部分位于目标区域内：<br>• 刷子 / 表层土 / 珍贵文物 / 对侧的矿车 / 化石矿 / 磨盘 / 秤盘 每个 5分"
         },
         { 
@@ -426,7 +426,7 @@
 
     // ⏱️ 计时器逻辑
     let timerInterval;
-    let timeLeft = 150; // 2分30秒 = 150秒
+    let timeLeft = 150;
 
     function updateTimerDisplay() {
         const minutes = Math.floor(timeLeft / 60);
@@ -528,10 +528,9 @@
         document.getElementById('totalScore').textContent = missionTotal + inspectScore + bonus;
     }
 
-    // 🔄 重置全部功能（包括器材检录）
+    // 🔄 重置全部功能
     function resetAll() {
         if (confirm('确定要重置全部吗？这将清空所有分数、精准度奖励和器材检录状态，但不会重置计时器。')) {
-            // 清除所有任务按钮的选中状态
             missions.forEach(mission => {
                 mission.buttons.forEach((value, index) => {
                     const btn = document.getElementById(`btn-${mission.id}-${index}`);
@@ -539,20 +538,15 @@
                         btn.classList.remove('selected');
                     }
                 });
-                // 重置单个任务显示分数
                 const scoreDisplay = document.getElementById(`score-${mission.id}`);
                 if (scoreDisplay) {
                     scoreDisplay.textContent = '0 分';
                 }
             });
             
-            // 重置器材检录
             document.getElementById('inspectEquipment').checked = false;
-            
-            // 重置精准度奖励为0分
             document.getElementById('bonus0').checked = true;
             
-            // 重新计算总分
             calculateScore();
         }
     }
