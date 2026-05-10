@@ -559,7 +559,7 @@
 
     function exportData() {
         let data = `=== FLL 2025-2026 积分表 ===\n`;
-        data += `用时：${document.getElementById('timerDisplay').textContent}\n`; // ✅ 已改为“用时”
+        data += `剩余时间：${document.getElementById('timerDisplay').textContent}\n`; // ✅ 改为“剩余时间”
         data += `器材检录：${document.getElementById('inspectEquipment').checked ? '合格（20分）' : '不合格（0分）'}\n`;
         data += `精准奖励：${document.querySelector('input[name="accuracyBonus"]:checked').nextElementSibling.textContent}\n\n`;
         
