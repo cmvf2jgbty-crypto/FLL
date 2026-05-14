@@ -321,7 +321,6 @@
                 <span>理论满分: 545分</span>
             </div>
             <div class="buttons">
-                <button class="action-btn" onclick="calculateScore()">🔄 计算总分</button>
                 <button class="action-btn" onclick="resetAll()">🔄 重置全部</button>
                 <button class="action-btn" onclick="exportData()">📋 导出数据</button>
             </div>
@@ -559,7 +558,7 @@
 
     function exportData() {
         let data = `=== FLL 2025-2026 积分表 ===\n`;
-        data += `剩余时间：${document.getElementById('timerDisplay').textContent}\n`; // ✅ 改为“剩余时间”
+        data += `剩余时间：${document.getElementById('timerDisplay').textContent}\n`;
         data += `器材检录：${document.getElementById('inspectEquipment').checked ? '合格（20分）' : '不合格（0分）'}\n`;
         data += `精准奖励：${document.querySelector('input[name="accuracyBonus"]:checked').nextElementSibling.textContent}\n\n`;
         
