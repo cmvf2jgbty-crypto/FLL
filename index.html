@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLL 2025-2026 场地赛积分表</title>
+    <title>FLL 2025-2026 场地赛计分表</title>
     <style>
         :root {
             --bg-light: #f0f0f0;
@@ -242,7 +242,7 @@
 
 <div class="container">
     <header>
-        <h1>🏺 FLL 2025-2026 场地赛积分表</h1>
+        <h1>🏺 FLL 2025-2026 场地赛计分表</h1>
         <p class="subtitle">UNEARTHED (重见天日) - 黑白灰三色版</p>
     </header>
 
@@ -557,7 +557,7 @@
     }
 
     function exportData() {
-        let data = `=== FLL 2025-2026 积分表 ===\n`;
+        let data = `=== FLL 2025-2026 计分表 ===\n`;
         data += `剩余时间：${document.getElementById('timerDisplay').textContent}\n`;
         data += `器材检录：${document.getElementById('inspectEquipment').checked ? '合格（20分）' : '不合格（0分）'}\n`;
         data += `精准奖励：${document.querySelector('input[name="accuracyBonus"]:checked').nextElementSibling.textContent}\n\n`;
