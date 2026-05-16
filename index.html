@@ -243,7 +243,7 @@
 <div class="container">
     <header>
         <h1>🏺 FLL 2025-2026 场地赛计分表</h1>
-        <p class="subtitle">UNEARTHED (重见天日)</p>
+        <p class="subtitle">UNEARTHED (重见天日) - 黑白灰三色版</p>
     </header>
 
     <div class="content">
@@ -426,56 +426,6 @@
     // ⏱️ 计时器逻辑
     let timerInterval;
     let timeLeft = 150; // 2分30秒 = 150秒
-    let audioContext; // 音频上下文
-    let audioInitialized = false; // 音频是否已初始化
-
-    // 初始化音频（必须在用户交互后调用）
-    function initAudio() {
-        if (audioInitialized) return;
-        
-        try {
-            audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            audioInitialized = true;
-            console.log("音频已初始化");
-        } catch (e) {
-            console.error("音频初始化失败:", e);
-        }
-    }
-
-    // 播放柔和的“嘀”声（倒计时结束时）
-    function playEndSound() {
-        if (!audioInitialized || !audioContext) {
-            console.warn("音频未初始化，无法播放声音");
-            return;
-        }
-        
-        try {
-            // 创建振荡器 - 使用柔和的正弦波
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-            
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            
-            // 设置频率和波形 - 柔和的正弦波
-            oscillator.frequency.value = 880; // A5音，清脆但不刺耳
-            oscillator.type = 'sine'; // 正弦波最柔和
-            
-            // 音量控制 - 轻柔起音，快速淡出
-            const now = audioContext.currentTime;
-            gainNode.gain.setValueAtTime(0, now);
-            gainNode.gain.linearRampToValueAtTime(0.3, now + 0.05); // 快速达到适中音量
-            gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.3); // 0.3秒内淡出
-            
-            // 开始播放
-            oscillator.start(now);
-            oscillator.stop(now + 0.3);
-            
-            console.log("播放柔和嘀声");
-        } catch (e) {
-            console.error("播放声音失败:", e);
-        }
-    }
 
     function updateTimerDisplay() {
         const minutes = Math.floor(timeLeft / 60);
@@ -485,24 +435,14 @@
     }
 
     function startTimer() {
-        initAudio(); // 初始化音频（必须在用户交互后）
-        
         if (timerInterval) return;
         timerInterval = setInterval(() => {
             timeLeft--;
             updateTimerDisplay();
-            
             if (timeLeft <= 0) {
                 clearInterval(timerInterval);
                 timerInterval = null;
-                
-                // 倒计时归零后，先播放声音，再显示提示
-                playEndSound();
-                
-                // 延迟一点显示提示，确保声音先播放
-                setTimeout(() => {
-                    alert("⏰ 时间到！比赛结束！");
-                }, 300);
+                alert("⏰ 时间到！比赛结束！");
             }
         }, 1000);
     }
@@ -644,11 +584,6 @@
         renderMissions();
         updateTimerDisplay();
         calculateScore();
-        
-        // 添加页面点击事件，确保音频可以播放
-        document.body.addEventListener('click', function() {
-            initAudio();
-        }, { once: true });
     };
 </script>
 </body>
