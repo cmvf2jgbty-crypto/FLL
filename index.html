@@ -22,9 +22,43 @@
         body {
             background: var(--bg-light);
             color: var(--text-dark);
-            padding: 20px;
+            padding: 20px 20px 84px;
             background-image: radial-gradient(var(--text-light) 1px, transparent 1px);
             background-size: 20px 20px;
+        }
+
+        /* 底部悬浮署名条 */
+        .designer-credit {
+            position: fixed;
+            left: 50%;
+            bottom: 18px;
+            z-index: 1000;
+            transform: translateX(-50%);
+            width: max-content;
+            max-width: calc(100vw - 32px);
+            padding: 10px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 999px;
+            background: rgba(34, 34, 34, 0.92);
+            color: #ffffff;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            text-align: center;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        @media (max-width: 480px) {
+            .designer-credit {
+                bottom: 12px;
+                padding: 9px 14px;
+                font-size: 0.78rem;
+                white-space: normal;
+            }
         }
 
         .container {
@@ -243,7 +277,7 @@
 <div class="container">
     <header>
         <h1>🏺 FLL 2025-2026 场地赛计分表</h1>
-        <p class="subtitle">UNEARTHED-重见天日(朝花夕拾）</p>
+        <p class="subtitle">UNEARTHED-重见天日(朝花夕拾队）</p>
     </header>
 
     <div class="content">
@@ -586,5 +620,8 @@
         calculateScore();
     };
 </script>
+<div class="designer-credit" role="note" aria-label="设计者署名">
+    Designed by ZixuanWang From 朝花夕拾
+</div>
 </body>
 </html>
