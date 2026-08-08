@@ -6,15 +6,17 @@
     <title>FLL 2025-2026 场地赛计分表</title>
     <style>
         :root {
-            --bg-light: #f0f0f0;
-            --bg-white: #ffffff;
-            --border-gray: #cccccc;
-            --text-dark: #333333;
-            --text-medium: #666666;
-            --text-light: #999999;
-            --accent-dark: #222222;
-            --accent-medium: #555555;
-            --shadow: rgba(0, 0, 0, 0.1);
+            --bg-light: #d6ad5d;
+            --bg-white: #fff3d2;
+            --bg-soft: #f5dda3;
+            --border-gray: #bd8730;
+            --text-dark: #3f2915;
+            --text-medium: #75532c;
+            --text-light: #c18c37;
+            --accent-dark: #7b2d16;
+            --accent-medium: #b56b20;
+            --accent-blue: #0b315c;
+            --shadow: rgba(77, 42, 12, 0.22);
         }
 
         * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0; padding:0; }
@@ -23,8 +25,11 @@
             background: var(--bg-light);
             color: var(--text-dark);
             padding: 20px 20px 84px;
-            background-image: radial-gradient(var(--text-light) 1px, transparent 1px);
-            background-size: 20px 20px;
+            background-image:
+                radial-gradient(rgba(123, 45, 22, 0.22) 1px, transparent 1px),
+                linear-gradient(135deg, #efd18c 0%, #cf9f4a 52%, #e3bd70 100%);
+            background-size: 20px 20px, 100% 100%;
+            background-attachment: fixed;
         }
 
         /* 底部悬浮署名条 */
@@ -37,10 +42,10 @@
             width: max-content;
             max-width: calc(100vw - 32px);
             padding: 10px 18px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 226, 159, 0.45);
             border-radius: 999px;
-            background: rgba(34, 34, 34, 0.92);
-            color: #ffffff;
+            background: linear-gradient(90deg, rgba(105, 38, 18, 0.96), rgba(18, 48, 79, 0.96));
+            color: #fff1c9;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
@@ -68,19 +73,48 @@
             border-radius: 12px;
             box-shadow: 0 10px 30px var(--shadow);
             overflow: hidden;
-            border: 2px solid var(--accent-dark);
+            border: 2px solid #945119;
         }
 
         header {
-            background: var(--accent-dark);
-            color: white;
-            padding: 25px;
+            background: linear-gradient(135deg, #7b2d16 0%, #a7551d 54%, #c48229 100%);
+            color: #fff7df;
+            padding: 20px 25px;
             text-align: center;
-            border-bottom: 5px solid var(--accent-medium);
+            border-bottom: 5px solid #d9a13f;
         }
 
-        h1 { margin: 0; font-size: 2.2em; letter-spacing: 1px; }
-        .subtitle { opacity: 0.8; margin-top: 8px; font-style: italic; font-size: 1.1em; }
+        .header-inner {
+            display: grid;
+            grid-template-columns: 132px 1fr 132px;
+            align-items: center;
+            gap: 22px;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .team-logo {
+            width: 124px;
+            height: 124px;
+            display: block;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #f2c96f;
+            background: #fff7df;
+            box-shadow: 0 8px 22px rgba(43, 23, 8, 0.38);
+        }
+
+        .header-spacer { width: 132px; }
+        .header-copy { min-width: 0; }
+
+        @media (max-width: 700px) {
+            .header-inner { grid-template-columns: 1fr; gap: 14px; }
+            .team-logo { width: 104px; height: 104px; margin: 0 auto; }
+            .header-spacer { display: none; }
+        }
+
+        h1 { margin: 0; font-size: 2.2em; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(48, 22, 5, 0.4); }
+        .subtitle { color: #ffe7ab; margin-top: 8px; font-style: italic; font-size: 1.1em; }
 
         .content { padding: 25px; }
 
@@ -97,14 +131,14 @@
         }
 
         .card {
-            background: var(--bg-white);
+            background: #fff8e4;
             border-radius: 8px;
             padding: 20px;
             border-left: 5px solid var(--accent-dark);
             border: 1px solid var(--border-gray);
         }
 
-        .card h3 { margin-top: 0; color: var(--accent-dark); border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .card h3 { margin-top: 0; color: var(--accent-dark); border-bottom: 2px solid #e3bd70; padding-bottom: 10px; }
 
         /* 计时器样式 */
         .timer-container { text-align: center; }
@@ -119,7 +153,7 @@
         .timer-btn {
             padding: 8px 16px;
             border: 2px solid var(--accent-dark);
-            background: white;
+            background: #fff8e4;
             border-radius: 50%;
             width: 50px;
             height: 50px;
@@ -135,7 +169,7 @@
         .timer-btn:hover { background: var(--accent-dark); color: white; transform: scale(1.1); }
 
         /* 器材检录 */
-        .inspection-card { border-left-color: var(--accent-medium); background: #f9f9f9; }
+        .inspection-card { border-left-color: var(--accent-medium); background: var(--bg-soft); }
         .inspection-list { list-style: none; padding: 0; }
         .inspection-list li { margin: 10px 0; display: flex; align-items: center; }
         .inspection-list input { width: 18px; height: 18px; margin-right: 10px; accent-color: var(--accent-dark); }
@@ -149,7 +183,7 @@
         }
 
         .mission-card {
-            background: white;
+            background: #fff8e4;
             border: 1px solid var(--border-gray);
             border-radius: 8px;
             padding: 15px;
@@ -175,7 +209,7 @@
             height: 28px;
             border-radius: 50%;
             border: 2px solid var(--border-gray);
-            background: white;
+            background: #fff8e4;
             font-size: 0.75em;
             font-weight: bold;
             color: var(--text-dark);
@@ -202,7 +236,7 @@
 
         /* 精准度奖励 - 小圆形 */
         .bonus-section {
-            background: #f9f9f9;
+            background: var(--bg-soft);
             padding: 20px;
             border-radius: 8px;
             border-left: 5px solid var(--accent-medium);
@@ -226,7 +260,7 @@
             height: 24px;
             border-radius: 50%;
             border: 2px solid var(--border-gray);
-            background: white;
+            background: #fff8e4;
             cursor: pointer;
             transition: all 0.2s;
             margin: 0;
@@ -248,8 +282,8 @@
         .total-section {
             text-align: center;
             padding: 30px;
-            background: var(--accent-dark);
-            color: white;
+            background: linear-gradient(135deg, #6f2815 0%, #9b4b1b 62%, #173554 100%);
+            color: #fff7df;
             border-radius: 12px;
             margin-top: 20px;
         }
@@ -261,7 +295,7 @@
         .action-btn { 
             padding: 10px 20px; 
             border: 2px solid var(--accent-dark); 
-            background: white; 
+            background: #fff4d6; 
             color: var(--accent-dark); 
             border-radius: 20px; 
             font-size: 1em; 
@@ -276,8 +310,14 @@
 
 <div class="container">
     <header>
-        <h1>🏺 FLL 2025-2026 场地赛计分表</h1>
-        <p class="subtitle">UNEARTHED-重见天日(朝花夕拾队）</p>
+        <div class="header-inner">
+            <img class="team-logo" src="fbde1a21-aa23-4a74-827b-e5ae40a5624d(2).png" alt="朝花夕拾队标志">
+            <div class="header-copy">
+                <h1>🏺 FLL 2025-2026 场地赛计分表</h1>
+                <p class="subtitle">UNEARTHED-重见天日（朝花夕拾队）</p>
+            </div>
+            <div class="header-spacer" aria-hidden="true"></div>
+        </div>
     </header>
 
     <div class="content">
